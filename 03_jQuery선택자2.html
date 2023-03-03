@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03_jQuery선택자2</title>
+    <!-- <title> 아래 CDN 방식으로  jQuery Library script 추가 -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" 
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" 
+        crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <h3>prop() 메소드</h3>
+    <pre>
+        attribute란? 
+        type, name, class, id, value 등과 같이
+        속성 값을 별도로 입력해야 하는 속성
+
+        property : checked, selected 와 같이
+        속성값이 별도로 입력되지 않는 속성
+
+        prop("속성명") : 해당 속성이 요소에 존재하면 true,
+        아니면 false를 반환
+
+        prop("속성명", true | false) : 해당 속성을 checked,
+        selected 상태로 변경(true) / 해제(false)
+    </pre>
+
+    취미 :
+    <input type="checkebox" name="hobby" value="football"> 풋볼축구
+    <input type="checkebox" name="hobby" value="game" checked> 게임
+    <input type="checkebox" name="hobby" value="music"> 음악감상
+
+    <button type="button" id="btn1">확인</button>
+    
+    <script>
+        $("#btn1").on("click", () => {
+            const arr = $("input[name='hobby']"); 
+
+            let str = "";
+
+            console.log(arr.prop("checked") );
+            // 배열명을 적을 경우 0번 인덱스만 확인이 가능
+
+            for(let i=0; i<arr.length; i++) {
+                // 각 인덱스에 저장된 체크박스 요소가 체크되어 있는지 아닌지 확인
+                console.log(i + " : " + $(arr[i]).prop("checked") );
+                
+                if( $(arr[i]).prop("checked") ) {
+                    str += $(arr[i]).val() + " ";
+            }
+        });
+    </script>
+</body>
+</html>
